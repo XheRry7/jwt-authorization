@@ -1,15 +1,11 @@
 import { AsyncRouter } from "express-async-router";
-import { Signup, Login } from "../controllers/signup.js";
-import withAuth from "../middleware/auth.js";
+import { getTodos, createTodo, updateTodo, delTodo } from '../controllers/todo.js';
 
 const router = AsyncRouter();
 
-router.post("/sign-up", Signup);
-
-router.post("/login", Login);
-
-router.get("/welcome", withAuth, (req, res) => {
-    res.status(200).send("Welcome  ");
-  });
+router.get('/getTodos', getTodos)
+router.post('/createTodo', createTodo);
+router.put('/updateTodo/:id', updateTodo);
+router.delete('/deleteTodo/:id', delTodo);
 
 export default router;
